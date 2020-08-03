@@ -20,19 +20,21 @@ export default class Login extends React.Component {
 
   onLogin = async () => {
     const { email, password } = this.state
-    fetch('http://localhost:3000/api/login', {
+    fetch('http://192.168.42.162:3000/api/login', {
       method: 'POST',
       headers: {
         Accept: '*/*',
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        firstParam: this.state.email,
-        secondParam: this.state.password,
+        email: this.state.email,
+        password: this.state.password,
       })      
     })
     .then(response => response.json())
-    .then(responseJson => { console.log("responseJson",responseJson);this.setState({data: responseJson, Loading:false}); this.props.navigation.navigate('Detail', { item: this.state.data })})
+    .then(responseJson => { 
+      this.setState({data: responseJson, Loading:false}); 
+      this.props.navigation.navigate('Detail', { item: responseJson })})
      
       .catch(error => {
         console.error("there was an error",error);
@@ -46,7 +48,7 @@ export default class Login extends React.Component {
 
     return (
       <View style={styles.container}>
-        <View style={{ margin: 10 }}>
+        <View style={styles.textinput}>
           <TextInput
             name='email'
             value={email}
@@ -55,7 +57,7 @@ export default class Login extends React.Component {
             onChangeText={this.handleEmailChange}
           />
         </View>
-        <View style={{ margin: 10 }}>
+        <View style={styles.textinput}>
           <TextInput
             name='password'
             value={password}
@@ -78,5 +80,11 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center'
+  },
+  textinput:{
+    borderColor: '#000000',
+    marginBottom: 10,
+    height: 40,
+    borderWidth: 1
   }
 })

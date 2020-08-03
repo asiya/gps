@@ -37,7 +37,7 @@ function MainStackNavigator() {
         name='Detail'
         component={Detail}
         options={({ route }) => ({
-            title: route.params.item.email
+            title: route.params.item.token
         })}
         />
       </Stack.Navigator>
