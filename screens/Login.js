@@ -1,5 +1,7 @@
 import React from 'react'
-import { Button, StyleSheet, View, Text, TextInput, TouchableOpacity } from 'react-native'
+import { Button, StyleSheet, SafeAreaView, View, Text, TextInput, TouchableOpacity } from 'react-native'
+import FormInput from '../components/FormInput'
+import FormButton from '../components/FormButton'
 
 
 export default class Login extends React.Component {
@@ -18,7 +20,7 @@ export default class Login extends React.Component {
     this.setState({ password })
   }
 
-  onLogin = async () => {
+  handleOnLogin = async () => {
     const { email, password } = this.state
     fetch('http://192.168.42.162:3000/api/login', {
       method: 'POST',
@@ -47,29 +49,42 @@ export default class Login extends React.Component {
     const { email, password } = this.state
 
     return (
-      <View style={styles.container}>
-        <View style={styles.textinput}>
-          <TextInput
-            name='email'
-            value={email}
-            placeholder='Enter email'
-            autoCapitalize='none'
-            onChangeText={this.handleEmailChange}
+      <SafeAreaView style={styles.container}>
+        <FormInput
+          name='email'
+          value={email}
+          placeholder='Enter email'
+          autoCapitalize='none'
+          onChangeText={this.handleEmailChange}
+          iconName='ios-mail'
+          iconColor='#2C384A'
+        />
+        <FormInput
+          name='password'
+          value={password}
+          placeholder='Enter password'
+          secureTextEntry
+          onChangeText={this.handlePasswordChange}
+          iconName='ios-lock'
+          iconColor='#2C384A'
+        />
+        <View style={styles.buttonContainer}>
+          <FormButton
+            buttonType='outline'
+            onPress={this.handleOnLogin}
+            title='LOGIN'
+            buttonColor='#039BE5'
           />
         </View>
-        <View style={styles.textinput}>
-          <TextInput
-            name='password'
-            value={password}
-            placeholder='Enter password'
-            secureTextEntry
-            onChangeText={this.handlePasswordChange}
-          />
-        </View>
-        <Button title='Login' onPress={this.onLogin} />
-        
-        <Button title='Go to Signup' onPress={this.goToSignup} />
-      </View>
+        <Button
+          title="Don't have an account? Sign Up"
+          onPress={this.goToSignup}
+          titleStyle={{
+            color: '#F57C00'
+          }}
+          type='clear'
+        />
+         </SafeAreaView>
     )
   }
 }
@@ -77,14 +92,9 @@ export default class Login extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center'
+    backgroundColor: '#fff'
   },
-  textinput:{
-    borderColor: '#000000',
-    marginBottom: 10,
-    height: 40,
-    borderWidth: 1
+  buttonContainer: {
+    margin: 25
   }
 })
