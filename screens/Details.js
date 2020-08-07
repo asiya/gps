@@ -44,6 +44,7 @@ import FormButton from '../components/FormButton'
       productdesc: '',
       price:'',
       comments:'',
+      address:''
     }
   
     handleProductNameChange = productname => {
@@ -68,10 +69,12 @@ import FormButton from '../components/FormButton'
     addProduct = async () => {
       fetch('http://localhost:3000/api/dashboard/additionaldetails', {
         method: 'POST',
+        credentials: 'include',
         headers: {
           Accept: '*/*',
           'Content-Type': 'application/json',
-          'Authorization': 'Bearer ' + this.props.route.params.item.token
+          'Authorization': 'Bearer ' + this.props.route.params.item.token,
+          'Access-Control-Allow-Credentials':true
         },
         body: JSON.stringify({
           proname: this.state.productname,
@@ -132,7 +135,7 @@ import FormButton from '../components/FormButton'
               buttonType='outline'
               onPress={this.addProduct}
               title='Add Product'
-              buttonColor='#039BE5'
+              buttonColor='#d63447'
             />
           </View>     
       </SafeAreaView>

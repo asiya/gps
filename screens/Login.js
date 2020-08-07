@@ -50,40 +50,37 @@ export default class Login extends React.Component {
 
     return (
       <SafeAreaView style={styles.container}>
+         <Text style={styles.gps}>
+             GPS 
+          </Text>
         <FormInput
           name='email'
           value={email}
-          placeholder='Enter email'
+          placeholder='Email'
           autoCapitalize='none'
           onChangeText={this.handleEmailChange}
-          iconName='ios-mail'
-          iconColor='#2C384A'
         />
         <FormInput
           name='password'
           value={password}
-          placeholder='Enter password'
+          placeholder='Password'
           secureTextEntry
           onChangeText={this.handlePasswordChange}
-          iconName='ios-lock'
-          iconColor='#2C384A'
         />
         <View style={styles.buttonContainer}>
+          <Text style={styles.forgotpassword} onPress={this.goToSignup}>
+              Forgotten password?    
+          </Text>
+
           <FormButton
-            buttonType='outline'
             onPress={this.handleOnLogin}
-            title='LOGIN'
-            buttonColor='#039BE5'
+            title="Log In"
           />
+          
+          <Text style={styles.noAccountText}>
+            Don't have an account?    <Text style={styles.signup} onPress={this.goToSignup}   type='clear' >Sign Up</Text>
+          </Text>
         </View>
-        <Button
-          title="Don't have an account? Sign Up"
-          onPress={this.goToSignup}
-          titleStyle={{
-            color: '#F57C00'
-          }}
-          type='clear'
-        />
          </SafeAreaView>
     )
   }
@@ -91,10 +88,25 @@ export default class Login extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#fff'
+    flex: 1, 
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'stretch',
+    margin:20,
+    backgroundColor:"#ffffff"
   },
-  buttonContainer: {
-    margin: 25
+
+  gps: {
+    alignSelf: 'center',
+    marginBottom:20,
+    fontSize:20,    
+  },
+  forgotpassword:{
+    alignSelf: 'flex-end',
+    marginBottom:20
+  },
+  noAccountText:{
+    alignSelf: 'center',
+    marginTop:20
   }
 })

@@ -16,7 +16,7 @@ const FormInput = ({
     <Ionicons style={styles.iconStyle} name={iconName} size={20} color={iconColor}/>
     <TextInput
       {...rest}
-      placeholderTextColor="grey"
+      placeholderTextColor="black"
       name={name}
       value={value}
       placeholder={placeholder}
@@ -27,19 +27,21 @@ const FormInput = ({
 
 const styles = StyleSheet.create({
   inputContainer: {
-    margin: 15
+    //margin: 15
   },
   iconStyle: {
-    marginRight: 10
+    marginRight: 10,
   },
   input:{
-    flex: 1,
+    //flex: 1,
     paddingTop: 10,
     paddingRight: 10,
     paddingBottom: 10,
-    paddingLeft: 0,
-    backgroundColor: '#fff',
-    color: '#424242',
+    paddingLeft: 10,
+    marginBottom:20,
+    backgroundColor: '#f6eedf',
+    color: '#000',    
+    borderRadius: 10
   }
 })
 
