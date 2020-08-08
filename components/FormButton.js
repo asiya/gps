@@ -7,15 +7,14 @@ const FormButton = ({ title, buttonType, buttonColor,onPress, ...rest }) => (
       title={title}
       style={styles.button}
       color="#d63447"
+      borderRadius = "20"
       onPress={onPress}
     />  
   
 )
 
 const styles = StyleSheet.create({  
-  button:{
-    backgroundColor:"#000000"
-  }
+  
 })
 
 export default FormButton

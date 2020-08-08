@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, StyleSheet, SafeAreaView, View, Text, TextInput, TouchableOpacity } from 'react-native'
+import { Button, StyleSheet, SafeAreaView, ScrollView, View, Text, TextInput, TouchableOpacity } from 'react-native'
 import FormInput from '../components/FormInput'
 import FormButton from '../components/FormButton'
 
@@ -67,46 +67,74 @@ export default class Login extends React.Component {
           secureTextEntry
           onChangeText={this.handlePasswordChange}
         />
-        <View style={styles.buttonContainer}>
-          <Text style={styles.forgotpassword} onPress={this.goToSignup}>
-              Forgotten password?    
-          </Text>
+         <View style={styles.buttonContainer}>
+            <Text style={styles.forgotpassword} onPress={this.goToSignup}>
+                Forgotten password?    
+            </Text>
 
-          <FormButton
-            onPress={this.handleOnLogin}
-            title="Log In"
-          />
-          
-          <Text style={styles.noAccountText}>
-            Don't have an account?    <Text style={styles.signup} onPress={this.goToSignup}   type='clear' >Sign Up</Text>
-          </Text>
-        </View>
-         </SafeAreaView>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={this.handleOnLogin}
+            >
+            <Text style={styles.loginText}>Log In</Text>
+            </TouchableOpacity>   
+
+          <View style={styles.bottomSignUp}>
+            <Text style={styles.noAccountText}>
+                Don't have an account? <Text style={styles.signup} onPress={this.goToSignup}   type='clear' ><Text style={styles.signUpText}>Sign Up</Text></Text>
+              </Text>
+            </View>
+          </View>
+        </SafeAreaView>
     )
   }
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1, 
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'stretch',
-    margin:20,
-    backgroundColor:"#ffffff"
+    flex: 1,     
+    backgroundColor:"#ffffff",
+    justifyContent:"center"
+  },
+  
+  
+  buttonContainer:{
+    marginLeft:20,
+    marginRight:20
   },
 
   gps: {
     alignSelf: 'center',
-    marginBottom:20,
+    marginTop:10,
+    marginBottom:10,
     fontSize:20,    
+    color:"#d63447",
+    fontWeight:"600"
   },
   forgotpassword:{
     alignSelf: 'flex-end',
-    marginBottom:20
+    marginBottom:20,
+    color:"#d63447",
+    fontWeight:"600",
   },
   noAccountText:{
-    alignSelf: 'center',
-    marginTop:20
+   
+  },
+  button:{
+    backgroundColor:"#d63447",
+    borderRadius:10,
+    padding:10,   
+  },
+  loginText:{
+    alignSelf: 'center',    
+    color:"#ffffff",
+  },
+  signUpText:{
+    color:"#d63447",
+    fontWeight:"600",   
+  },
+  bottomSignUp:{
+    alignSelf: 'center', 
+    marginTop:20   
   }
 })

@@ -12,8 +12,7 @@ const FormInput = ({
   value,
   ...rest
 }) => (
-  <View style={styles.inputContainer}>
-    <Ionicons style={styles.iconStyle} name={iconName} size={20} color={iconColor}/>
+  <View style={styles.inputContainer}>   
     <TextInput
       {...rest}
       placeholderTextColor="black"
@@ -27,21 +26,15 @@ const FormInput = ({
 
 const styles = StyleSheet.create({
   inputContainer: {
-    //margin: 15
+    marginLeft: 20,
+    marginRight: 20
   },
-  iconStyle: {
-    marginRight: 10,
-  },
-  input:{
-    //flex: 1,
-    paddingTop: 10,
-    paddingRight: 10,
-    paddingBottom: 10,
-    paddingLeft: 10,
-    marginBottom:20,
+  input:{    
+    padding: 10,
     backgroundColor: '#f6eedf',
     color: '#000',    
-    borderRadius: 10
+    borderRadius: 10,
+    marginBottom:10
   }
 })
 
