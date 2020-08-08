@@ -1,8 +1,7 @@
 import * as React from 'react'
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
-
-import Home from '../screens/Home'
+import Landing from '../screens/Landing'
 import Detail from '../screens/Details'
 import Login from '../screens/Login'
 import Signup from '../screens/Signup'
@@ -12,7 +11,7 @@ const Stack = createStackNavigator()
 function MainStackNavigator() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName='Login'  screenOptions={{
+      <Stack.Navigator initialRouteName='Landing'  screenOptions={{
           gestureEnabled: true,
           headerShown: false
           /* headerStyle: {
@@ -24,6 +23,11 @@ function MainStackNavigator() {
           headerTintColor: '#ffd700',
           headerBackTitleVisible: false */
         }}>
+           <Stack.Screen
+          name='Landing'
+          component={Landing}          
+        />
+          
         <Stack.Screen
           name='Login'
           component={Login}          

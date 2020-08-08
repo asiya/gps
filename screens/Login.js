@@ -1,17 +1,19 @@
 import React from 'react'
 import { Button, StyleSheet, SafeAreaView, ScrollView, View, Text, TextInput, TouchableOpacity } from 'react-native'
 import FormInput from '../components/FormInput'
-import FormButton from '../components/FormButton'
 
 
 export default class Login extends React.Component {
+  
   state = {
     Loading : true,
     email: '',
     password: '',
-    data:[]
+    data:[],
+    disabled:true
   }
 
+ 
   handleEmailChange = email => {
     this.setState({ email })
   }
@@ -47,12 +49,14 @@ export default class Login extends React.Component {
   goToSignup = () => this.props.navigation.navigate('Signup')
   render() {
     const { email, password } = this.state
-
+    
     return (
+      
       <SafeAreaView style={styles.container}>
-         <Text style={styles.gps}>
-             GPS 
+        <Text style={styles.gps}>
+             Global Platform for Startup's 
           </Text>
+         
         <FormInput
           name='email'
           value={email}
@@ -73,10 +77,10 @@ export default class Login extends React.Component {
             </Text>
 
             <TouchableOpacity
-              style={styles.button}
+              style={{backgroundColor: this.state.disabled ? '#ff847c': '#d63447',borderRadius:10, padding:10}}
               onPress={this.handleOnLogin}
             >
-            <Text style={styles.loginText}>Log In</Text>
+            <Text style={styles.loginText} disabled={this.state.disabled}>Log In</Text>
             </TouchableOpacity>   
 
           <View style={styles.bottomSignUp}>
@@ -96,7 +100,6 @@ const styles = StyleSheet.create({
     backgroundColor:"#ffffff",
     justifyContent:"center"
   },
-  
   
   buttonContainer:{
     marginLeft:20,
@@ -121,9 +124,9 @@ const styles = StyleSheet.create({
    
   },
   button:{
-    backgroundColor:"#d63447",
     borderRadius:10,
     padding:10,   
+    backgroundColor:"#d63447"
   },
   loginText:{
     alignSelf: 'center',    
@@ -136,5 +139,6 @@ const styles = StyleSheet.create({
   bottomSignUp:{
     alignSelf: 'center', 
     marginTop:20   
-  }
+  },
+ 
 })
