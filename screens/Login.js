@@ -1,6 +1,7 @@
 import React from 'react'
 import { Button, StyleSheet, SafeAreaView, ScrollView, View, Text, TextInput, TouchableOpacity } from 'react-native'
 import FormInput from '../components/FormInput'
+import commonStyles from '../assets/css/common'
 
 
 export default class Login extends React.Component {
@@ -10,7 +11,8 @@ export default class Login extends React.Component {
     email: '',
     password: '',
     data:[],
-    disabled:true
+    disabled:true,
+    params:''
   }
 
  
@@ -22,8 +24,11 @@ export default class Login extends React.Component {
     this.setState({ password })
   }
 
-  handleOnLogin = async () => {
-    const { email, password } = this.state
+  
+
+  handleOnLogin = async (selectedUser) => {
+    const { email, password } = this.state;
+    this.setState({ selectedUser });
     fetch('http://192.168.42.162:3000/api/login', {
       method: 'POST',
       headers: {
@@ -33,6 +38,7 @@ export default class Login extends React.Component {
       body: JSON.stringify({
         email: this.state.email,
         password: this.state.password,
+        selectedUSer: this.props.route.params.selectedUser
       })      
     })
     .then(response => response.json())
@@ -49,11 +55,11 @@ export default class Login extends React.Component {
   goToSignup = () => this.props.navigation.navigate('Signup')
   render() {
     const { email, password } = this.state
-    
+    const { params } = this.props.route.params.selectedUser;
     return (
       
-      <SafeAreaView style={styles.container}>
-        <Text style={styles.gps}>
+      <SafeAreaView style={commonStyles.container}>
+        <Text style={commonStyles.gpsHeaderText}>
              Global Platform for Startup's 
           </Text>
          
@@ -71,14 +77,14 @@ export default class Login extends React.Component {
           secureTextEntry
           onChangeText={this.handlePasswordChange}
         />
-         <View style={styles.buttonContainer}>
+         <View style={commonStyles.buttonContainer}>
             <Text style={styles.forgotpassword} onPress={this.goToSignup}>
                 Forgotten password?    
             </Text>
 
             <TouchableOpacity
               style={{backgroundColor: this.state.disabled ? '#ff847c': '#d63447',borderRadius:10, padding:10}}
-              onPress={this.handleOnLogin}
+              onPress={() => this.handleOnLogin(params)}
             >
             <Text style={styles.loginText} disabled={this.state.disabled}>Log In</Text>
             </TouchableOpacity>   
@@ -95,25 +101,7 @@ export default class Login extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,     
-    backgroundColor:"#ffffff",
-    justifyContent:"center"
-  },
   
-  buttonContainer:{
-    marginLeft:20,
-    marginRight:20
-  },
-
-  gps: {
-    alignSelf: 'center',
-    marginTop:10,
-    marginBottom:10,
-    fontSize:20,    
-    color:"#d63447",
-    fontWeight:"600"
-  },
   forgotpassword:{
     alignSelf: 'flex-end',
     marginBottom:20,

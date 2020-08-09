@@ -1,40 +1,9 @@
 import React from 'react'
-import {Button, StyleSheet, Text, TextInput, View } from 'react-native'
+import {SafeAreaView, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native'
+import FormInput from '../components/FormInput'
+import FormButton from '../components/FormButton'
+import commonStyles from '../assets/css/common'
 
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#ebebeb'
-  },
-  text: {
-    color: '#101010',
-    fontSize: 24,
-    fontWeight: 'bold'
-  },
-  card: {
-    width: 350,
-    height: 100,
-    borderRadius: 10,
-    backgroundColor: '#101010',
-    margin: 10,
-    padding: 10,
-    alignItems: 'center'
-  },
-  cardText: {
-    fontSize: 18,
-    color: '#ffd700',
-    marginBottom: 5
-  },
-  textinput:{
-    borderColor: '#000000',
-    marginBottom: 10,
-    height: 40,
-    borderWidth: 1
-  }
-})
 
 export default class Signup extends React.Component {
   state = {
@@ -104,60 +73,57 @@ export default class Signup extends React.Component {
     render() {
       const { name, email, password, phno, org, size } = this.state
       return (
-        <View style={styles.container}>
-        <View style={styles.textinput}>
-          <TextInput
+        <ScrollView>
+        <SafeAreaView style={commonStyles.container}>
+          <Text style={commonStyles.gpsHeaderText}>Register as Startup</Text>
+          <FormInput
             name='name'
             value={name}
-            placeholder='Enter name'
+            placeholder='Enter Name'
             autoCapitalize='none'
             onChangeText={this.handleNameChange}
           />
-        </View>
-        <View style={styles.textinput}>
-          <TextInput
+          <FormInput
             name='email'
             value={email}
-            placeholder='email'            
+            placeholder='Email'            
             onChangeText={this.handleEmailChange}
           />
-        </View>
-        <View style={styles.textinput}>
-          <TextInput
+          <FormInput
             name='password'
             value={password}
-            placeholder='password'
+            placeholder='Password'
             secureTextEntry
             onChangeText={this.handlePasswordChange}
           />
-        </View>
-        <View style={styles.textinput}>
-          <TextInput
+          <FormInput
             name='phno'
             value={phno}
-            placeholder='phno'
+            placeholder='Contact Number'
             onChangeText={this.handlePhnoChange}
           />
-        </View>
-        <View style={styles.textinput}>
-          <TextInput
+          <FormInput
             name='org'
             value={org}
-            placeholder='org'
+            placeholder='Organization'
             onChangeText={this.handleOrgChange}
           />
-        </View>
-        <View style={styles.textinput}>
-          <TextInput
+          <FormInput
             name='size'
             value={size}
-            placeholder='size'
+            placeholder='Size of Organization'
             onChangeText={this.handleSizeChange}
           />
-        </View>
-        <Button title='Signup' onPress={this.onSignup} />   
-        <Button title='Go to Login' onPress={this.goToLogin} />
-      </View>        
+        <FormButton title='Register' onPress={this.onSignup} />   
+        <FormButton title='Already have an account? Sign In' onPress={this.goToLogin} />
+      </SafeAreaView>     
+      </ScrollView>   
       )
     }
   }
+
+  const styles = StyleSheet.create({
+    
+   
+   
+  })

@@ -12,8 +12,6 @@ function MainStackNavigator() {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName='Landing'  screenOptions={{
-          gestureEnabled: true,
-          headerShown: false
           /* headerStyle: {
             backgroundColor: '#101010'
           },
@@ -25,17 +23,20 @@ function MainStackNavigator() {
         }}>
            <Stack.Screen
           name='Landing'
-          component={Landing}          
+          component={Landing}     
+          options={{headerShown: false}}     
         />
           
         <Stack.Screen
           name='Login'
-          component={Login}          
+          component={Login}  
+          options={{headerShown: false}}        
         />
         <Stack.Screen
           name='Signup'
           component={Signup}
           options={{ title: 'Signup Screen' }}
+          headerLeft={null}
         />
        <Stack.Screen
         name='Detail'

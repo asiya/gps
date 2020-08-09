@@ -48,7 +48,7 @@ export default class Landing extends React.Component {
   }
   
   handleOnSelection = () => {
-      this.props.navigation.navigate('Login')
+      this.props.navigation.navigate('Login',{selectedUser:this.state.selectedItem})
   }
  
   render() {
@@ -75,7 +75,7 @@ export default class Landing extends React.Component {
                 <Text style={styles.nextText}>Next</Text>
             </TouchableOpacity> 
               
-        </SafeAreaView>
+      </SafeAreaView>
     )
   }
 }
