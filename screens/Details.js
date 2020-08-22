@@ -67,14 +67,12 @@ import FormButton from '../components/FormButton'
       this.setState({ address })
     }
     addProduct = async () => {
-      fetch('http://localhost:3000/api/dashboard/additionaldetails', {
+      fetch('http://localhost:3000/api/startups/dashboard/additionaldetails', {
         method: 'POST',
-        credentials: 'include',
         headers: {
           Accept: '*/*',
           'Content-Type': 'application/json',
           'Authorization': 'Bearer ' + this.props.route.params.item.token,
-          'Access-Control-Allow-Credentials':true
         },
         body: JSON.stringify({
           proname: this.state.productname,
@@ -87,7 +85,7 @@ import FormButton from '../components/FormButton'
       .then(response => response.json())
       .then(responseJson => { console.log("responseJson",responseJson);
         this.setState({data: responseJson, Loading:false});
-        this.props.navigation.navigate('Signup')})
+        this.props.navigation.navigate('Home')})
        
         .catch(error => {
           console.error("there was an error",error);

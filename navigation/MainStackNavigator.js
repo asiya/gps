@@ -1,6 +1,8 @@
 import * as React from 'react'
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
+import Ionicons from 'react-native-vector-icons/MaterialIcons';
+import Home from '../screens/Home'
 import Landing from '../screens/Landing'
 import Detail from '../screens/Details'
 import Login from '../screens/Login'
@@ -11,7 +13,7 @@ const Stack = createStackNavigator()
 function MainStackNavigator() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName='Landing'  screenOptions={{
+      <Stack.Navigator initialRouteName='Login'  screenOptions={{
           /* headerStyle: {
             backgroundColor: '#101010'
           },
@@ -45,6 +47,14 @@ function MainStackNavigator() {
             title: route.params.item.token
         })}
         />
+         <Stack.Screen
+          name='Home'
+          component={Home}     
+          options={{headerShown: true,
+            headerTitle: ()=> <Ionicons name="home" onPress={() => alert('Login with Facebook')}/>,
+            headerRight: () => <Ionicons name="settings" />,
+            }}
+          />
       </Stack.Navigator>
     </NavigationContainer>
   )

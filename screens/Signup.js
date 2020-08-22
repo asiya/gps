@@ -45,7 +45,7 @@ export default class Signup extends React.Component {
 
   onSignup = async () => {
     const { email, password } = this.state
-    fetch('http://localhost:3000/api/users', {
+    fetch('http://localhost:3000/api/startups/users', {
       method: 'POST',
       headers: {
         Accept: '*/*',
@@ -114,7 +114,7 @@ export default class Signup extends React.Component {
             placeholder='Size of Organization'
             onChangeText={this.handleSizeChange}
           />
-        <FormButton title='Register' onPress={this.onSignup} />   
+        <FormButton title='Register' onPress={this.goToLogin} />   
         <FormButton title='Already have an account? Sign In' onPress={this.goToLogin} />
       </SafeAreaView>     
       </ScrollView>   

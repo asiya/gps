@@ -12,7 +12,7 @@ export default class Login extends React.Component {
     password: '',
     data:[],
     disabled:true,
-    params:''
+    params:'',
   }
 
  
@@ -26,10 +26,10 @@ export default class Login extends React.Component {
 
   
 
-  handleOnLogin = async (selectedUser) => {
+  handleOnLogin = async () => {
     const { email, password } = this.state;
-    this.setState({ selectedUser });
-    fetch('http://192.168.42.162:3000/api/login', {
+   // this.setState({ selectedUser });
+    fetch('http://localhost:3000/api/startups/login', {
       method: 'POST',
       headers: {
         Accept: '*/*',
@@ -38,7 +38,7 @@ export default class Login extends React.Component {
       body: JSON.stringify({
         email: this.state.email,
         password: this.state.password,
-        selectedUSer: this.props.route.params.selectedUser
+        //selectedUSer: this.props.route.params.selectedUser
       })      
     })
     .then(response => response.json())
@@ -55,7 +55,7 @@ export default class Login extends React.Component {
   goToSignup = () => this.props.navigation.navigate('Signup')
   render() {
     const { email, password } = this.state
-    const { params } = this.props.route.params.selectedUser;
+   // const { params } = this.props.route.params.selectedUser;
     return (
       
       <SafeAreaView style={commonStyles.container}>
@@ -84,7 +84,7 @@ export default class Login extends React.Component {
 
             <TouchableOpacity
               style={{backgroundColor: this.state.disabled ? '#ff847c': '#d63447',borderRadius:10, padding:10}}
-              onPress={() => this.handleOnLogin(params)}
+              onPress={() => this.handleOnLogin()}
             >
             <Text style={styles.loginText} disabled={this.state.disabled}>Log In</Text>
             </TouchableOpacity>   
