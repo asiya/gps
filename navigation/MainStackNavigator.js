@@ -1,27 +1,37 @@
 import * as React from 'react'
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
-import Ionicons from 'react-native-vector-icons/MaterialIcons';
+import { Image } from 'react-native';
 import Home from '../screens/Home'
 import Landing from '../screens/Landing'
 import Detail from '../screens/Details'
 import Login from '../screens/Login'
 import Signup from '../screens/Signup'
+import HeaderComponent from '../components/headerCommon'
 
 const Stack = createStackNavigator()
 
+const Profile = () => {
+  return <div>
+          <Image
+            style={{width: 50,  height: 50,}}
+            source={{
+              uri: 'https://reactnative.dev/img/tiny_logo.png',
+            }}
+            onPress={() => {
+              alert("Opportunities");
+             }}
+          />     
+      </div>
+ 
+}
+
 function MainStackNavigator() {
+  
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName='Login'  screenOptions={{
-          /* headerStyle: {
-            backgroundColor: '#101010'
-          },
-          headerTitleStyle: {
-            fontWeight: 'bold'
-          },
-          headerTintColor: '#ffd700',
-          headerBackTitleVisible: false */
+      <Stack.Navigator initialRouteName='Home'  screenOptions={{
+         
         }}>
            <Stack.Screen
           name='Landing'
@@ -49,11 +59,30 @@ function MainStackNavigator() {
         />
          <Stack.Screen
           name='Home'
-          component={Home}     
-          options={{headerShown: true,
-            headerTitle: ()=> <Ionicons name="home" onPress={() => alert('Login with Facebook')}/>,
-            headerRight: () => <Ionicons name="settings" />,
-            }}
+          component={Home}    
+          options={{
+            headerTitle: (props) => (
+              <HeaderComponent
+                {...props}
+                onPress={() => {
+                  // Do something
+                }}
+              />
+            ),
+            headerLeft: (props) => (
+              <Profile
+                {...props}
+                
+              />
+            ),
+            headerRight: (props) => (
+              <Profile
+                {...props}
+                
+              />
+            ),
+            headerTitleAlign:'center'
+          }}
           />
       </Stack.Navigator>
     </NavigationContainer>

@@ -1,14 +1,17 @@
 import * as React from 'react';
-import { Text, View } from 'react-native';
+import { Text, View, StyleSheet } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 function Interested() {
+  
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
       <Text>Interested!</Text>
     </View>
   );
+
+  
 }
 
 function Applied() {
@@ -26,15 +29,20 @@ function Saved() {
     </View>
   );
 }
+ 
 
 
 
 const Tab = createBottomTabNavigator();
 
+
 export default function Home() {  
-  return (
+  
+  return (    
       <Tab.Navigator backBehavior="none"  tabBarOptions={{
-        activeTintColor: '#d63447',
+        activeTintColor: '#d63447', navigationOptions: {
+          headerTintColor: 'red',
+        }
       }}>
         <Tab.Screen name="Interested" component={Interested} 
         options={{
